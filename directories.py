@@ -1,0 +1,52 @@
+__author__ = 'Gustaf'
+
+import datetime
+import calendar
+
+
+class Directories:
+    def __init__(self, start_date, end_date):
+        self.sub_directories = []
+        self.start_date = start_date
+        self.end_date = end_date
+
+    def generate_sub_directories(self):
+        pass
+
+    def short_name(self):
+        pass
+
+    def sub_directories(self):
+        return self.sub_directories
+
+
+class Year():
+    def __init__(self, year_as_datetime):
+        self.year_as_datetime = year_as_datetime
+
+    def short_name(self):
+        return str(self.year_as_datetime.year)
+
+
+class Month():
+    def __init__(self, month_as_datetime):
+        self.month_as_datetime = month_as_datetime
+
+    def short_name(self):
+        month_number = self.month_as_datetime.month
+        return calendar.month_name[month_number]
+
+
+d = datetime.datetime
+jan = datetime.date(2012, 1, 1)
+now = datetime.date(2013,05,1)
+
+day_count = (now - jan).days
+months = [jan.month]
+for day_number in range(day_count):
+    days_diff = datetime.timedelta(days=day_number)
+    new_date = jan + days_diff
+    if new_date.month not in months:
+        months.append(new_date.month)
+print months
+

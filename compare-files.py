@@ -9,11 +9,11 @@ destination_list = os.listdir(destination_path)
 
 count = 0
 for photo in photo_stream_list:
-	if photo in destination_list:
-		stream_photo = photo_stream_path + "\\" + photo
-		dest_photo = destination_path + "\\" + photo
-		count += 1
-		print photo, filecmp.cmp(stream_photo, dest_photo)
+    if photo in destination_list:
+        stream_photo = photo_stream_path + "\\" + photo
+        dest_photo = destination_path + "\\" + photo
+        count += 1
+        print photo, filecmp.cmp(stream_photo, dest_photo)
 #print filecmp.cmp(dl[0], dl[1])
 print count
 print len(destination_list)
