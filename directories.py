@@ -3,6 +3,8 @@ __author__ = 'Gustaf'
 import datetime
 import calendar
 
+DASH_SYMBOL = '-'
+
 
 class Directories:
     def __init__(self, start_date, end_date):
@@ -29,12 +31,23 @@ class Year():
 
 
 class Month():
-    def __init__(self, month_as_datetime):
+    def __init__(self, month_as_datetime, photo_files=[]):
         self.month_as_datetime = month_as_datetime
+        self.files = photo_files
 
     def short_name(self):
         month_number = self.month_as_datetime.month
-        return calendar.month_name[month_number]
+        year = self.month_as_datetime.year
+        return str(year) + DASH_SYMBOL + calendar.month_name[month_number]
+
+    def addPhoto(self, photo_file):
+        self.files.add(photo_file)
+
+    def addAllPhotos(self, photo_files):
+        self.files.extend(photo_files)
+
+    def getFiles(self):
+        return self.files
 
 
 d = datetime.datetime
@@ -48,5 +61,8 @@ for day_number in range(day_count):
     new_date = jan + days_diff
     if new_date.month not in months:
         months.append(new_date.month)
-print months
+
+mymonth = Month(d.today())
+print mymonth.short_name()
+
 
